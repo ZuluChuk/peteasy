@@ -1,0 +1,80 @@
+entity Product {
+	id String,
+    image String,
+    description Blob,
+    price BigDecimal,
+}
+
+entity AbstractOrder {
+	subTotal BigDecimal,
+    total BigDecimal,
+    tax BigDecimal,
+	shippingCost BigDecimal
+}
+
+entity Order {
+    code String
+}
+
+entity Cart {
+    code String
+}
+
+entity OrderEntry {
+	basePrice BigDecimal,
+    totalPrice BigDecimal,
+    amont Integer,
+    no Integer,
+}
+
+entity Customer {
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	registrationDate ZonedDateTime,
+}
+
+entity Address {
+	addressLine1 String
+    addressLine2 String
+    city String
+}
+
+entity Country {
+	isoCode String
+    name String
+}
+
+// defining multiple oneToOne relationships
+relationship ManyToOne {
+    Address{country} to Country,
+    OrderEntry{product} to Product
+}
+
+relationship OneToMany {
+    AbstractOrder{entries} to OrderEntry{order},
+    Customer{orders} to Order{customer},
+    Customer{carts} to Cart{customer},
+    // unidirectional oneToMany not supported, so using a workaround
+    Customer{shippingAddresses} to Address{shippingCustomer},
+    Customer{billingAddresses} to Address{billingCustomer}
+}
+
+relationship OneToOne {
+    Order{abstractOrder} to AbstractOrder{order},
+    Cart{abstractOrder} to AbstractOrder{cart},
+    AbstractOrder{shippingAddress} to Address,
+    AbstractOrder{billingAddress} to Address
+}
+
+// Set pagination options
+paginate Cart, Address with infinite-scroll
+paginate Order, Customer, Product, OrderEntry with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+// Set an angular suffix
+angularSuffix * with pe

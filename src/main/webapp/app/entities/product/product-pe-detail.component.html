@@ -1,0 +1,36 @@
+
+<div *ngIf="product">
+    <h2><span jhiTranslate="peteasyApp.product.detail.title">Product</span> {{product.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="peteasyApp.product.image">Image</span></dt>
+        <dd>
+            <span>{{product.image}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.product.description">Description</span></dt>
+        <dd>
+            <div *ngIf="product.description">
+                <a (click)="openFile(product.descriptionContentType, product.description)" jhiTranslate="entity.action.open">open</a>
+                {{product.descriptionContentType}}, {{byteSize(product.description)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.product.price">Price</span></dt>
+        <dd>
+            <span>{{product.price}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-pe/'+ product.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

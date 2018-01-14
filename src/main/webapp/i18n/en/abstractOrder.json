@@ -1,0 +1,30 @@
+{
+    "peteasyApp": {
+        "abstractOrder" : {
+            "home": {
+                "title": "Abstract Orders",
+                "createLabel": "Create a new Abstract Order",
+                "createOrEditLabel": "Create or edit a Abstract Order",
+                "search": "Search for Abstract Order"
+            },
+            "created": "A new Abstract Order is created with identifier {{ param }}",
+            "updated": "A Abstract Order is updated with identifier {{ param }}",
+            "deleted": "A Abstract Order is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Abstract Order {{ id }}?"
+            },
+            "detail": {
+                "title": "Abstract Order"
+            },
+            "subTotal": "Sub Total",
+            "total": "Total",
+            "tax": "Tax",
+            "shippingCost": "Shipping Cost",
+            "shippingAddress": "Shipping Address",
+            "billingAddress": "Billing Address",
+            "entries": "Entries",
+            "order": "Order",
+            "cart": "Cart"
+        }
+    }
+}

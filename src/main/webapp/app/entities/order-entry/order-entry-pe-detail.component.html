@@ -1,0 +1,49 @@
+
+<div *ngIf="orderEntry">
+    <h2><span jhiTranslate="peteasyApp.orderEntry.detail.title">Order Entry</span> {{orderEntry.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="peteasyApp.orderEntry.basePrice">Base Price</span></dt>
+        <dd>
+            <span>{{orderEntry.basePrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.orderEntry.totalPrice">Total Price</span></dt>
+        <dd>
+            <span>{{orderEntry.totalPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.orderEntry.amont">Amont</span></dt>
+        <dd>
+            <span>{{orderEntry.amont}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.orderEntry.no">No</span></dt>
+        <dd>
+            <span>{{orderEntry.no}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.orderEntry.product">Product</span></dt>
+        <dd>
+            <div *ngIf="orderEntry.productId">
+                <a [routerLink]="['/product-pe', orderEntry.productId]">{{orderEntry.productId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.orderEntry.order">Order</span></dt>
+        <dd>
+            <div *ngIf="orderEntry.orderId">
+                <a [routerLink]="['/abstract-order-pe', orderEntry.orderId]">{{orderEntry.orderId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'order-entry-pe/'+ orderEntry.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

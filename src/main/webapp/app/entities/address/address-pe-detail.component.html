@@ -1,0 +1,51 @@
+
+<div *ngIf="address">
+    <h2><span jhiTranslate="peteasyApp.address.detail.title">Address</span> {{address.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="peteasyApp.address.addressLine1">Address Line 1</span></dt>
+        <dd>
+            <span>{{address.addressLine1}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.address.addressLine2">Address Line 2</span></dt>
+        <dd>
+            <span>{{address.addressLine2}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.address.city">City</span></dt>
+        <dd>
+            <span>{{address.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.address.country">Country</span></dt>
+        <dd>
+            <div *ngIf="address.countryId">
+                <a [routerLink]="['/country-pe', address.countryId]">{{address.countryId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.address.shippingCustomer">Shipping Customer</span></dt>
+        <dd>
+            <div *ngIf="address.shippingCustomerId">
+                <a [routerLink]="['/customer-pe', address.shippingCustomerId]">{{address.shippingCustomerId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="peteasyApp.address.billingCustomer">Billing Customer</span></dt>
+        <dd>
+            <div *ngIf="address.billingCustomerId">
+                <a [routerLink]="['/customer-pe', address.billingCustomerId]">{{address.billingCustomerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'address-pe/'+ address.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
